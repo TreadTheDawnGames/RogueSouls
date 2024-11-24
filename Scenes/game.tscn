@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://duj00utkd48xr"]
+
+[ext_resource type="Script" path="res://Scenes/CameraFollower.cs" id="1_h3ese"]
+[ext_resource type="PackedScene" uid="uid://meca102gv2h2" path="res://Scenes/Entities/player_character.tscn" id="1_ygdmr"]
+[ext_resource type="Script" path="res://Scripts/Managers/ActionManager.cs" id="2_mkuke"]
+[ext_resource type="PackedScene" uid="uid://do71atgt3sl1a" path="res://Scenes/Entities/dummy.tscn" id="4_uory5"]
+[ext_resource type="PackedScene" uid="uid://dm2pxxd8vqqgt" path="res://Scenes/Entities/damage_box.tscn" id="5_ckqdq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e3vgv"]
+size = Vector3(50.8717, 0.0768738, 62.0797)
+
+[sub_resource type="BoxMesh" id="BoxMesh_c86e0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ckrh"]
+albedo_color = Color(0, 0.411765, 0, 1)
+
+[node name="Game" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, -0.731354, 0.681998, 0, 0.681998, 0.731354, -1, 3.19685e-08, -2.98111e-08, 10, 13, 0)
+script = ExtResource("1_h3ese")
+
+[node name="Managers" type="Node" parent="."]
+
+[node name="ActionManager" type="Node" parent="Managers"]
+script = ExtResource("2_mkuke")
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/StaticBody3D"]
+shape = SubResource("BoxShape3D_e3vgv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/StaticBody3D"]
+transform = Transform3D(50.8717, 0, 0, 0, 0.0768738, 0, 0, 0, 62.0797, 0, 0, 0)
+mesh = SubResource("BoxMesh_c86e0")
+surface_material_override/0 = SubResource("StandardMaterial3D_1ckrh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(-0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, 0.5, -0.5, 0, 11, 10)
+
+[node name="PlayerCharacter" parent="." groups=["CameraTarget", "Player"] instance=ExtResource("1_ygdmr")]
+
+[node name="Dummy" parent="." instance=ExtResource("4_uory5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19174, 1.25292, -2.95379)
+
+[node name="DamageBox" parent="." instance=ExtResource("5_ckqdq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 4)

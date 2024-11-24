@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctdnjjcxf2b8v"]
+
+[ext_resource type="Script" path="res://ModReader.cs" id="1_j27gq"]
+[ext_resource type="Script" path="res://Scenes/Managers/boot_screen.cs" id="1_qopc2"]
+[ext_resource type="Script" path="res://Scenes/Managers/ModAssembler.cs" id="2_fsj1a"]
+
+[node name="BootScreen" type="Node2D"]
+script = ExtResource("1_qopc2")
+
+[node name="ModReader" type="Node2D" parent="."]
+script = ExtResource("1_j27gq")
+
+[node name="ModAssembler" type="Node2D" parent="ModReader"]
+script = ExtResource("2_fsj1a")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 196.0
+offset_top = 113.0
+offset_right = 909.0
+offset_bottom = 519.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "This is the boot screen
+
+"

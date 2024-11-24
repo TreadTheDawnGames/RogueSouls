@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dm2pxxd8vqqgt"]
+
+[ext_resource type="Script" path="res://addons/hithurtboxes3d/HitBox3D.cs" id="1_mo36f"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b5xnu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g0a0e"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_axre7"]
+material = SubResource("StandardMaterial3D_g0a0e")
+
+[node name="DamageBox" type="Node3D"]
+
+[node name="HitBox3D" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_mo36f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox3D"]
+shape = SubResource("BoxShape3D_b5xnu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_axre7")

@@ -12,16 +12,17 @@ public partial class HitBox3D : Area3D
 
     public override void _Ready()
     {
-        CollisionLayer = layers;
-        CollisionMask = 0;
+        base._Ready();
+        /*CollisionLayer = layers;
+        CollisionMask = 0;*/
 
         List<CollisionShape3D> nodes = new List<CollisionShape3D>();
 
         foreach (CollisionShape3D child in GetChildren().OfType<CollisionShape3D>())
         {
-                nodes.Add(child);
+            nodes.Add(child);
         }
-        myShape = nodes.ToArray() ;
+        myShape = nodes.ToArray();
     }
 
 

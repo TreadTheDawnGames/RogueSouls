@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://do71atgt3sl1a"]
+
+[ext_resource type="Script" path="res://DummyTarget.cs" id="1_higyc"]
+[ext_resource type="Script" path="res://addons/hithurtboxes3d/HurtBox3D.cs" id="2_lgceu"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bd8f2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04e4g"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_73xim"]
+material = SubResource("StandardMaterial3D_04e4g")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b6585"]
+
+[node name="Dummy" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01289, 0)
+script = ExtResource("1_higyc")
+
+[node name="HurtBox3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("2_lgceu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox3D"]
+shape = SubResource("CapsuleShape3D_bd8f2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_73xim")
+surface_material_override/0 = SubResource("StandardMaterial3D_b6585")

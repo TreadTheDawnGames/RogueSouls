@@ -1,0 +1,104 @@
+[gd_scene load_steps=15 format=3 uid="uid://meca102gv2h2"]
+
+[ext_resource type="Script" path="res://Scripts/Entities/Player/PlayerCharacter.cs" id="1_qfepw"]
+[ext_resource type="Script" path="res://addons/hithurtboxes3d/HurtBox3D.cs" id="2_0vdpe"]
+[ext_resource type="Script" path="res://Scripts/Entities/Player/Animator.cs" id="3_nxbdy"]
+[ext_resource type="Script" path="res://Scenes/Entities/HitboxManager.cs" id="4_illtb"]
+[ext_resource type="Script" path="res://addons/hithurtboxes3d/HitBox3D.cs" id="5_fjms5"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vkm13"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7jb7p"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3o11d"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l1u4w"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3j2gj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_c4o4q"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_x6bsd"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_c6a1w"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gqit2"]
+
+[node name="PlayerCharacter" type="CharacterBody3D"]
+script = ExtResource("1_qfepw")
+
+[node name="HurtBox3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("2_0vdpe")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00813, 0)
+shape = SubResource("CapsuleShape3D_vkm13")
+
+[node name="ModelManager" type="Node3D" parent="."]
+script = ExtResource("3_nxbdy")
+
+[node name="CharacterModel" type="MeshInstance3D" parent="ModelManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02329, 0)
+mesh = SubResource("CapsuleMesh_7jb7p")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ModelManager/CharacterModel"]
+transform = Transform3D(0.651145, 0, 0, 0, 0.149818, 0, 0, 0, 0.180874, 0, 0.519837, 0.422212)
+mesh = SubResource("BoxMesh_3o11d")
+surface_material_override/0 = SubResource("StandardMaterial3D_l1u4w")
+
+[node name="AudioManager" type="Node3D" parent="."]
+
+[node name="HitboxManager" type="Node3D" parent="."]
+script = ExtResource("4_illtb")
+
+[node name="NearSmall" type="Area3D" parent="HitboxManager"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("5_fjms5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxManager/NearSmall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
+shape = SubResource("SphereShape3D_3j2gj")
+
+[node name="FarSmall" type="Area3D" parent="HitboxManager"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("5_fjms5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxManager/FarSmall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
+shape = SubResource("SphereShape3D_c4o4q")
+
+[node name="LeftSmall" type="Area3D" parent="HitboxManager"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("5_fjms5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxManager/LeftSmall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
+shape = SubResource("SphereShape3D_x6bsd")
+
+[node name="RightSmall" type="Area3D" parent="HitboxManager"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("5_fjms5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxManager/RightSmall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
+shape = SubResource("SphereShape3D_c6a1w")
+
+[node name="BehindSmall" type="Area3D" parent="HitboxManager"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("5_fjms5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxManager/BehindSmall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
+shape = SubResource("SphereShape3D_gqit2")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00813, 0)
+shape = SubResource("CapsuleShape3D_vkm13")
