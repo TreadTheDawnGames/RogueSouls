@@ -7,11 +7,14 @@ using Newtonsoft.Json;
 [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
 public partial class Action : Node, IAction
 {
-    [JsonProperty]
-    public string PathToDisplayIcon { get; set; }
+    [JsonProperty("Icon")]
+    public string IconString { get; set; }
 
     [JsonProperty]
-    public string ActionNameID;
+    public string ActionNameID { get; set; }
+
+    [JsonProperty]
+    public ActionTypeEnum ActionType { get; set; }
 
     [JsonProperty]
     public string ExpansionID;
@@ -24,7 +27,6 @@ public partial class Action : Node, IAction
 
     [JsonProperty]
     int TimesUsable { get; set; }
-    int TimesUsed { get; set; }
 
     [JsonProperty]
     List<AvailableHitboxes> Hitbox { get; set; }
@@ -32,12 +34,13 @@ public partial class Action : Node, IAction
     [JsonProperty]
     float TimeActive { get; set; }
 
-
+    public Image IconImage { get; set; }
+    int TimesUsed { get; set; }
     bool IsTimerActive;
-    
-    public Action(string pathToDisplayIcon, string actionNameID, string expansionID, Vector3? newVelocity = null, float speedMultiplier = 1, int timesUsable=0, List<AvailableHitboxes> hitbox = null, float timeActive = 0)
+
+    public Action(string pathToDisplayIcon, string actionNameID, string expansionID, ActionTypeEnum type, Vector3? newVelocity = null, float speedMultiplier = 1, int timesUsable=0, List<AvailableHitboxes> hitbox = null, float timeActive = 0)
     {
-        PathToDisplayIcon = pathToDisplayIcon;
+        IconString = pathToDisplayIcon;
         ExpansionID = expansionID;
         ActionNameID = actionNameID;
         NewVelocity = newVelocity;
@@ -45,6 +48,16 @@ public partial class Action : Node, IAction
         TimesUsable = timesUsable;
         Hitbox = hitbox;
         TimeActive = timeActive;
+        ActionType = type;
+    }
+
+    public void Initialize()
+    {
+        /*ImageTexture image = new ImageTexture();
+        image.Load(IconString);*/
+
+       IconImage = Image.LoadFromFile(IconString);
+      //  GD.Print("IconTexture loaded successfully");
     }
 
     public void Use(PlayerCharacter character)
@@ -116,5 +129,19 @@ public partial class Action : Node, IAction
         TimesUsed = 0;
         character.PlayerOnFloor -= () => ResetUses(character);
     }
+    public override string ToString()
+    {
+        return ActionNameID + "----\n" +
+            "   ActionType: " + ActionType + "\n" +
+        "   PathToDisplayIcon: " + IconString + "\n" +
+        "   ExpansionID: " + ExpansionID + "\n" +
+        "   ActionNameID: " + ActionNameID + "\n" +
+        "   NewVelocity: " + NewVelocity + "\n" +
+        "   SpeedMultiplier: " + SpeedMultiplier + "\n" +
+        "   TimesUsable: " + TimesUsable + "\n" +
+        "   Hitbox: " + Hitbox + "\n" +
+        "   TimeActive: " + TimeActive;
 
+
+    }
 }

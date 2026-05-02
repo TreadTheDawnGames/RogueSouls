@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ctdnjjcxf2b8v"]
 
 [ext_resource type="Script" path="res://ModReader.cs" id="1_j27gq"]
-[ext_resource type="Script" path="res://Scenes/Managers/boot_screen.cs" id="1_qopc2"]
+[ext_resource type="Script" path="res://Scenes/Managers/BootScreen.cs" id="1_qopc2"]
 [ext_resource type="Script" path="res://Scenes/Managers/ModAssembler.cs" id="2_fsj1a"]
 
 [node name="BootScreen" type="Node2D"]
@@ -28,3 +28,9 @@ grow_vertical = 2
 text = "This is the boot screen
 
 "
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 212.0
+offset_top = 222.0
+offset_right = 676.0
+offset_bottom = 516.0

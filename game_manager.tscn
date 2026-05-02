@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dywkennc2mncm"]
+
+[ext_resource type="Script" path="res://GameManager.cs" id="1_0m3gb"]
+[ext_resource type="PackedScene" uid="uid://ctdnjjcxf2b8v" path="res://Scenes/Managers/boot_screen.tscn" id="2_irgc6"]
+
+[node name="GameManager" type="Node3D"]
+script = ExtResource("1_0m3gb")
+
+[node name="BootScreen" parent="." instance=ExtResource("2_irgc6")]

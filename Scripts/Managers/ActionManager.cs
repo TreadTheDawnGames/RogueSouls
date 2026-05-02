@@ -14,14 +14,13 @@ public partial class ActionManager : Node
 	{
         PlayerCharacter = (PlayerCharacter)GetTree().GetFirstNodeInGroup("Player");
 
-        GD.PrintErr("YOU ARE MANUALLY CREATING BUTTON ACTIONS IN THE CHARACTER CONTROLLER");
 
 
         actions[ActionButtons.South] = ModReader.actions?[0];
          actions[ActionButtons.East] = ModReader.actions?[1];
         actions[ActionButtons.West] = ModReader.actions?[2];
-        
         actions[ActionButtons.North] = ModReader.actions?[3];
+        
         foreach (var action in ModReader.actions)
         {
             AddChild((Action)action);

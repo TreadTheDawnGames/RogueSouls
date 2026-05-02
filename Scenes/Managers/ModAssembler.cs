@@ -10,6 +10,16 @@ public partial class ModAssembler : Node2D
 
 	}
 
+	public void LoadCurrentSessionData(SessionData data)
+	{
+		//loads mod data into game manager node for use elsewhere. This class's only job is to load data into the GameManager.
+		ActionLibrary actionsLibrary = new(data.Actions);
+		GameManager.globalActionLibrary = actionsLibrary;
+		//EntityLibrary = new
+		//GameManager.globalEntityLibrary
+		//WorldGen
+		//GlobalWorldGen
+	}
 
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
